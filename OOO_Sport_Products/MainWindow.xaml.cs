@@ -24,5 +24,11 @@ namespace OOO_Sport_Products
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Подключение к БД
+            Classes.Helper.DB = new Model.DBSportProducts();
+        }
     }
 }
