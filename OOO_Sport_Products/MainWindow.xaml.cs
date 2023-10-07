@@ -25,10 +25,45 @@ namespace OOO_Sport_Products
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Начальные настройки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //Подключение к БД
             Classes.Helper.DB = new Model.DBSportProducts();
+        }
+
+        /// <summary>
+        /// Завершение работы приложения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonNavigation_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        /// <summary>
+        /// Кнопка авторизации (Гость)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonGuest_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        
+        /// <summary>
+        /// Кнопка авторизации (Пользователь)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonEnter_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
