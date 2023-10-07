@@ -20,3 +20,4 @@ C:\Users\Редисочка\Desktop\Demo\OOO_Sport_Products\OOO_Sport_Products\b
 C:\Users\Редисочка\Desktop\Demo\OOO_Sport_Products\OOO_Sport_Products\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Редисочка\Desktop\Demo\OOO_Sport_Products\OOO_Sport_Products\obj\Debug\OOO_Sport_Products_Content.g.cs
 C:\Users\Редисочка\Desktop\Demo\OOO_Sport_Products\OOO_Sport_Products\obj\Debug\OOO_Sport_Products.csproj.CopyComplete
+C:\Users\Редисочка\Desktop\Demo\OOO_Sport_Products\OOO_Sport_Products\obj\Debug\App.baml

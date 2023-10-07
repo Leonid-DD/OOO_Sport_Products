@@ -5,18 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOO_Sport_Products"
         mc:Ignorable="d"
-        Title="Авторизация" Height="450" Width="800" Icon="/Resources/icon.ico" Loaded="Window_Loaded">
+        Title="Авторизация" Height="450" Width="800" MinHeight="450" MinWidth="800" Icon="/Resources/icon.ico" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <!--Заголовок-->
+        <Grid Grid.Row="0" Background="#FFFFCC99">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="80"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Source="/Resources/logo.png" Height="70" Width="70"/>
+            <TextBlock Grid.Column="1" Text="Авторизация" Style="{StaticResource Title}"/>
+            <Button Name="ButtonNavigation" Grid.Column="2" Content="Выход" Style="{StaticResource Title}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="15" Background="#FFCC6600"/>
         </Grid>
     </Grid>
 </Window>
