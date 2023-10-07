@@ -47,7 +47,7 @@ namespace OOO_Sport_Products
         }
 
         /// <summary>
-        /// Кнопка авторизации (Гость)
+        /// Вход без ввода логина и пароля
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -57,12 +57,30 @@ namespace OOO_Sport_Products
         }
         
         /// <summary>
-        /// Кнопка авторизации (Пользователь)
+        /// Обработка логина и пароля
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonEnter_Click(object sender, RoutedEventArgs e)
         {
+            string login = TextBoxLogin.Text;
+            string password = TextBoxPassword.Text;
+            StringBuilder sb = new StringBuilder();
+            //Обработка пустоты
+            if (login == "") 
+            {
+                sb.Append("Логин не введен.\n");
+            }
+            if (password == "") 
+            {
+                sb.Append("Пароль не введен.\n");
+            }
+            if (sb.Length > 0)
+            {
+                MessageBox.Show(sb.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            //Поиск логина и пароля в БД
 
         }
     }
