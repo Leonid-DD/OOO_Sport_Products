@@ -66,6 +66,7 @@ namespace OOO_Sport_Products
             string login = TextBoxLogin.Text;
             string password = TextBoxPassword.Text;
             StringBuilder sb = new StringBuilder();
+
             //Обработка пустоты
             if (login == "") 
             {
@@ -80,8 +81,29 @@ namespace OOO_Sport_Products
                 MessageBox.Show(sb.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            //Поиск логина и пароля в БД
 
+            //Поиск логина и пароля в БД
+            List<Model.User> users = Classes.Helper.DB.Users.ToList();
+            foreach (Model.User user in users)
+            {
+                if (user.UserLogin.Equals(login))
+                {
+                    if (user.UserPassword.Equals(password))
+                    {
+                        //Переход на следующую страницу в соответствии с ролью пользователя
+                        Classes.Helper.user = user;
+                        sb.Append("Имя: " + user.UserFullName + " ; Код роли: " + user.UserRole + " ; Название роли: " + user.Role.RoleName);
+                        return;
+                    }
+                    sb.Append("Пароль неверен. Осталась 1 попытка.");
+                    break;
+                }
+            }
+            if (sb.Length == 0)
+            {
+                sb.Append("Пользователь не найден.");
+            }
+            MessageBox.Show(sb.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

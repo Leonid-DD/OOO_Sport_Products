@@ -9,6 +9,10 @@ namespace OOO_Sport_Products.Classes
 {
     public class Helper
     {
+        //Объект связи с БД
         public static Model.DBSportProducts DB { get; set; }
+
+        //Объект авторизованного пользователя
+        public static Model.User user { get; set; }
     }
 }
