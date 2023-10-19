@@ -47,7 +47,7 @@
             <PasswordBox x:Name="PasswordBoxAuthorization" Grid.Column="1" Grid.Row="2" Style="{StaticResource Normal}" Margin="20,20,70,20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
             <CheckBox x:Name="CheckBoxPasswordVisibility" Grid.Column="1" Grid.Row="2" Margin="30" HorizontalAlignment="Right" VerticalAlignment="Center" Click="CheckBoxPasswordVisibility_Click"/>
 
-            <easy:Captcha x:Name="Captcha" Grid.Column="0" Grid.Row="3" Margin="60,10,60,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Visibility="Visible"/>
+            <easy:Captcha x:Name="Captcha" Grid.Column="0" Grid.Row="3" Margin="60,10,60,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Visibility="Hidden"/>
             <TextBox x:Name="TextBoxCaptcha" Grid.Column="1" Grid.Row="3" Style="{StaticResource Normal}" Margin="20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="Hidden"/>
 
             <Button x:Name="ButtonGuest" Grid.Column="0" Grid.Row="4" Content="Гость" Style="{StaticResource Title}" Margin="20,15,20,15" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FFCC6600" Click="ButtonGuest_Click"/>

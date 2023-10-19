@@ -134,7 +134,7 @@ namespace OOO_Sport_Products
                     captchaDone = userCaptcha.Equals(captchaText);
                     if (!captchaDone)
                     {
-                        MessageBox.Show(sb.ToString(), "Капча введена неверно. Приложение заблокировано на 10 секунд.", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Капча введена неверно. Приложение заблокировано на 10 секунд.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                         this.IsEnabled = false;
                         dispatcherTimer.Start();
                         return;
@@ -167,6 +167,7 @@ namespace OOO_Sport_Products
                 }
                 else
                 {
+                    sb.Append("Введен неверный пароль. Приложение заблокировано на 10 секунд.");
                     this.IsEnabled = false;
                     dispatcherTimer.Start();
                 }
