@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOO_Sport_Products"
+        xmlns:easy="clr-namespace:EasyCaptcha.Wpf;assembly=EasyCaptcha.Wpf"
         mc:Ignorable="d"
         Title="Авторизация" Height="450" Width="800" MinHeight="450" MinWidth="800" Icon="/Resources/icon.ico" Loaded="Window_Loaded">
     <Grid>
@@ -24,7 +25,7 @@
         </Grid>
         <!--Основная часть-->
         <Grid Grid.Row="1">
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -34,19 +35,23 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="0.2*"/>
             </Grid.RowDefinitions>
-            
+
             <TextBlock Grid.Column="0" Grid.Row="1" Text="Логин" Style="{StaticResource Normal}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="20"/>
             <TextBlock Grid.Column="0" Grid.Row="2" Text="Пароль" Style="{StaticResource Normal}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="20"/>
-            
+
             <TextBox x:Name="TextBoxLogin" Grid.Column="1" Grid.Row="1" Style="{StaticResource Normal}" Margin="20,20,70,20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
             <TextBox x:Name="TextBoxPassword" Grid.Column="1" Grid.Row="2" Style="{StaticResource Normal}" Margin="20,20,70,20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="Hidden"/>
             <PasswordBox x:Name="PasswordBoxAuthorization" Grid.Column="1" Grid.Row="2" Style="{StaticResource Normal}" Margin="20,20,70,20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
             <CheckBox x:Name="CheckBoxPasswordVisibility" Grid.Column="1" Grid.Row="2" Margin="30" HorizontalAlignment="Right" VerticalAlignment="Center" Click="CheckBoxPasswordVisibility_Click"/>
 
-            <Button x:Name="ButtonGuest" Grid.Column="0" Grid.Row="3" Content="Гость" Style="{StaticResource Title}" Margin="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FFCC6600" Click="ButtonGuest_Click"/>
-            <Button x:Name="ButtonEnter" Grid.Column="1" Grid.Row="3" Content="Войти" Style="{StaticResource Title}" Margin="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FFCC6600" Click="ButtonEnter_Click"/>
+            <easy:Captcha x:Name="Captcha" Grid.Column="0" Grid.Row="3" Margin="60,10,60,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Visibility="Visible"/>
+            <TextBox x:Name="TextBoxCaptcha" Grid.Column="1" Grid.Row="3" Style="{StaticResource Normal}" Margin="20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="Hidden"/>
+
+            <Button x:Name="ButtonGuest" Grid.Column="0" Grid.Row="4" Content="Гость" Style="{StaticResource Title}" Margin="20,15,20,15" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FFCC6600" Click="ButtonGuest_Click"/>
+            <Button x:Name="ButtonEnter" Grid.Column="1" Grid.Row="4" Content="Войти" Style="{StaticResource Title}" Margin="20,15,20,15" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FFCC6600" Click="ButtonEnter_Click"/>
         </Grid>
     </Grid>
 </Window>

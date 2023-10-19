@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -23,6 +24,12 @@ namespace OOO_Sport_Products
         //Количество оставшихся попыток
         int remainingTries = 1;
 
+        //Текст капчи
+        string captchaText;
+
+        //Переменная таймера
+        System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -37,6 +44,10 @@ namespace OOO_Sport_Products
         {
             //Подключение к БД
             Classes.Helper.DB = new Model.DBSportProducts();
+
+            //Настройка таймера
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
         }
 
         /// <summary>
@@ -115,21 +126,49 @@ namespace OOO_Sport_Products
             Model.User user = users.Where(u=>u.UserLogin.Equals(login)).FirstOrDefault();
             if (user != null)
             {
+                //Проверка ввода капчи
+                bool captchaDone = false;
+                if (remainingTries == 0)
+                {
+                    string userCaptcha = TextBoxCaptcha.Text;
+                    captchaDone = userCaptcha.Equals(captchaText);
+                    if (!captchaDone)
+                    {
+                        MessageBox.Show(sb.ToString(), "Капча введена неверно. Приложение заблокировано на 10 секунд.", MessageBoxButton.OK, MessageBoxImage.Information);
+                        this.IsEnabled = false;
+                        dispatcherTimer.Start();
+                        return;
+                    }
+                }
+                else
+                {
+                    captchaDone = true;
+                }
+
+                //Проверка ввода пароля
                 if (user.UserPassword.Equals(password))
                 {
                     Classes.Helper.user = user;
+
+                    //Переход на следующее окно
                     sb.Append("Имя: " + user.UserFullName + " ; Код роли: " + user.UserRole + " ; Название роли: " + user.Role.RoleName);
                     MessageBox.Show(sb.ToString(), "Пользователь", MessageBoxButton.OK, MessageBoxImage.Information);
+                    
                     return;
                 }
                 else if (remainingTries > 0)
                 {
-                    sb.Append("Введен неверный пароль. Осталось " + remainingTries + " попыток.");
+                    sb.Append("Введен неверный пароль. Осталось " + remainingTries + " попыток. Необходимо ввести капчу.");
                     remainingTries--;
+                    Captcha.Visibility = Visibility.Visible;
+                    TextBoxCaptcha.Visibility = Visibility.Visible;
+                    Captcha.CreateCaptcha(EasyCaptcha.Wpf.Captcha.LetterOption.Alphanumeric, 4);
+                    captchaText = Captcha.CaptchaText.ToString();
                 }
                 else
                 {
-
+                    this.IsEnabled = false;
+                    dispatcherTimer.Start();
                 }
             }
             else 
@@ -158,6 +197,12 @@ namespace OOO_Sport_Products
                 PasswordBoxAuthorization.Visibility = Visibility.Visible;
                 PasswordBoxAuthorization.Password = TextBoxPassword.Text;
             }
+        }
+
+        public void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            this.IsEnabled = true;
+            dispatcherTimer.Stop();
         }
     }
 }
