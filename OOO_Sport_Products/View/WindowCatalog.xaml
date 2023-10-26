@@ -1,0 +1,57 @@
+﻿<Window x:Class="OOO_Sport_Products.View.WindowCatalog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OOO_Sport_Products.View"
+        mc:Ignorable="d"
+        Title="Каталог" Height="600" Width="1000" MinHeight="600" MinWidth="1000" Icon="/Resources/icon.ico" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Заголовок-->
+        <Grid Grid.Row="0" Background="#FFFFCC99">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Source="/Resources/logo.png" Height="70" Width="70"/>
+            <TextBlock Grid.Column="1" Text="Каталог" Style="{StaticResource Title}"/>
+            <Button x:Name="ButtonNavigation" Grid.Column="2" Content="Назад" Style="{StaticResource Title}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="15" Background="#FFCC6600" Click="ButtonNavigation_Click"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+            <ListBox x:Name="ListBoxProducts" Grid.Row="1">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="150"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="{Binding Path=ProductImagePath}"/>
+                            <StackPanel Grid.Column="1" Orientation="Vertical">
+                                <TextBlock x:Name="tbArticle" Text="{Binding Path=ProductArticle}" Visibility="Collapsed"/>
+                                <TextBlock x:Name="tbName" Text="{Binding Path=ProductName}" Style="{StaticResource Title}"/>
+                                <TextBlock x:Name="tbDesc" Text="{Binding Path=ProductDescription}" Style="{StaticResource Normal}"/>
+                                <TextBlock x:Name="tbMabuf" Text="{Binding Path=Manufacturer.ManufacturerName, StringFormat='Производитель: {0}'}" Style="{StaticResource Normal}"/>
+                                <TextBlock x:Name="tbCost" Text="{Binding Path=ProductCost, StringFormat='Цена без скидки: {0}'}" Style="{StaticResource Normal}"/>
+                                <TextBlock x:Name="tbDiscount" Text="{Binding Path=ProductDiscountCurrent, StringFormat='Скидка: {0} %'}" Style="{StaticResource Normal}"/>
+                                <TextBlock x:Name="tbCostDiscount" Text="{Binding Path=ProductDiscountCost, StringFormat='Цена со скидкой: {0}'}" Style="{StaticResource Normal}"/>
+                            </StackPanel>
+                            <TextBlock Grid.Column="2" x:Name="tbQuantity" Text="{Binding Path=ProductStorageSupply, StringFormat='На складе: {0}'}" Style="{StaticResource Normal}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+    </Grid>
+</Window>

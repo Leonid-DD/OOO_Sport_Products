@@ -67,7 +67,10 @@ namespace OOO_Sport_Products
         /// <param name="e"></param>
         private void ButtonGuest_Click(object sender, RoutedEventArgs e)
         {
-
+            View.WindowCatalog windowCatalog = new View.WindowCatalog();
+            this.Hide();
+            windowCatalog.ShowDialog();
+            this.Show();
         }
         
         /// <summary>
@@ -99,28 +102,6 @@ namespace OOO_Sport_Products
 
             //Поиск логина и пароля в БД
             List<Model.User> users = Classes.Helper.DB.Users.ToList();
-
-            //Авторизация через foreach
-            ////foreach (Model.User user in users)
-            ////{
-            ////    if (user.UserLogin.Equals(login))
-            ////    {
-            ////        if (user.UserPassword.Equals(password))
-            ////        {
-            ////            //Переход на следующую страницу в соответствии с ролью пользователя
-            ////            Classes.Helper.user = user;
-            ////            sb.Append("Имя: " + user.UserFullName + " ; Код роли: " + user.UserRole + " ; Название роли: " + user.Role.RoleName);
-            ////            return;
-            ////        }
-            ////        sb.Append("Пароль неверен. Осталась 1 попытка.");
-            ////        break;
-            ////    }
-            ////}
-            ////if (sb.Length == 0)
-            ////{
-            ////    sb.Append("Пользователь не найден.");
-            ////}
-            ////MessageBox.Show(sb.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             
             //Авторизация через where
             Model.User user = users.Where(u=>u.UserLogin.Equals(login)).FirstOrDefault();
@@ -149,6 +130,7 @@ namespace OOO_Sport_Products
                 if (user.UserPassword.Equals(password))
                 {
                     Classes.Helper.user = user;
+                    remainingTries = 1;
 
                     //Переход на следующее окно
                     sb.Append("Имя: " + user.UserFullName + " ; Код роли: " + user.UserRole + " ; Название роли: " + user.Role.RoleName);
