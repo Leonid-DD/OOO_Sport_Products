@@ -132,10 +132,16 @@ namespace OOO_Sport_Products
                     Classes.Helper.user = user;
                     remainingTries = 1;
 
-                    //Переход на следующее окно
+                    //Вывод информации о выбранном пользователе
                     sb.Append("Имя: " + user.UserFullName + " ; Код роли: " + user.UserRole + " ; Название роли: " + user.Role.RoleName);
                     MessageBox.Show(sb.ToString(), "Пользователь", MessageBoxButton.OK, MessageBoxImage.Information);
-                    
+
+                    //Переход на следующее окно
+                    View.WindowCatalog windowCatalog = new View.WindowCatalog();
+                    this.Hide();
+                    windowCatalog.ShowDialog();
+                    this.Show();
+
                     return;
                 }
                 else if (remainingTries > 0)
