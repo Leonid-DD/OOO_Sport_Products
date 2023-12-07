@@ -33,31 +33,6 @@ namespace OOO_Sport_Products.Model
         public int ProductStorageSupply { get; set; }
         public string ProductDescription { get; set; }
         public string ProductImage { get; set; }
-
-        public string ProductImagePath
-        {
-            get
-            {
-                string temp;
-                if (this.ProductImage != null) 
-                {
-                    temp = Directory.GetCurrentDirectory() + "/Images/" + this.ProductImage.ToString();
-                }
-                else
-                {
-                    temp = "/Resources/picture.png";
-                }
-                return temp;
-            }
-        }
-
-        public double ProductDiscountCost
-        {
-            get
-            {
-                return Math.Round(this.ProductCost * (100.0 -  this.ProductDiscountCurrent) /100.0, 2);
-            }
-        }
     
         public virtual Category Category { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }

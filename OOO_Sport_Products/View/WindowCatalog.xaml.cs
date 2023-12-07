@@ -94,6 +94,8 @@ namespace OOO_Sport_Products.View
         /// </summary>
         public void SelectProducts()
         {
+            List<ProductExtended> listProductsExt = new List<ProductExtended>();
+
             //Список товаров из БД
             List<Model.Product> listProducts = new List<Model.Product>();
             listProducts = Classes.Helper.DB.Products.ToList();
@@ -120,16 +122,6 @@ namespace OOO_Sport_Products.View
             //Выборка фильтрации по скидке
             listProducts = listProducts.Where(p => p.ProductDiscountMax <= maxDiscount && p.ProductDiscountCurrent >= minDiscount).ToList();
 
-            //Сортировка по цене
-            if ((bool)rbSortAsc.IsChecked)
-            {
-                listProducts = listProducts.OrderBy(p => p.ProductDiscountCost).ToList();
-            }
-            else
-            {
-                listProducts = listProducts.OrderByDescending(p => p.ProductDiscountCost).ToList();
-            }
-
             //Фильтрация по категории
             if (cbCategory.SelectedIndex > 0)
             {
@@ -145,10 +137,28 @@ namespace OOO_Sport_Products.View
 
             //Вывод количества отфильтрованных товаров
             int filterCount = listProducts.Count;
-            tbProductCount.Text = "Выбрано товаров: " + filterCount.ToString() + " из " + totalCount.ToString();
+            tbProductCount.Text = "Выбрано товаров: " + "\n" + filterCount.ToString() + " из " + totalCount.ToString();
+
+            //Перенос списка товаров в расширенный список
+            foreach (Model.Product product in listProducts) 
+            {
+                ProductExtended productExtended = new ProductExtended();
+                productExtended.product = product;
+                listProductsExt.Add(productExtended);
+            }
+
+            //Сортировка по цене
+            if ((bool)rbSortAsc.IsChecked)
+            {
+                listProductsExt = listProductsExt.OrderBy(p => p.ProductDiscountCost).ToList();
+            }
+            else
+            {
+                listProductsExt = listProductsExt.OrderByDescending(p => p.ProductDiscountCost).ToList();
+            }
 
             //Вывод отфильтрованного списка товаров
-            ListBoxProducts.ItemsSource = listProducts;
+            ListBoxProducts.ItemsSource = listProductsExt;
         }
 
         //Изменение в поле поиска
@@ -179,6 +189,12 @@ namespace OOO_Sport_Products.View
         private void rbSortDesc_Checked(object sender, RoutedEventArgs e)
         {
             SelectProducts();
+        }
+
+        //Контекстное меню добавления товара в заказ
+        private void miAddInOrder_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
