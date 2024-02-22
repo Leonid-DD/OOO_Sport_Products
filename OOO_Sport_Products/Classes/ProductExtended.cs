@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OOO_Sport_Products.Classes
 {
-    internal class ProductExtended
+    public class ProductExtended
     {
         public Model.Product product { get; set; }
 

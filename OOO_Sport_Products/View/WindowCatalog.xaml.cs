@@ -22,6 +22,7 @@ namespace OOO_Sport_Products.View
     public partial class WindowCatalog : Window
     {
         int totalCount;
+        List<Classes.ProductInOrder> listProductInOrder = new List<Classes.ProductInOrder>();
 
         public WindowCatalog()
         {
@@ -194,7 +195,32 @@ namespace OOO_Sport_Products.View
         //Контекстное меню добавления товара в заказ
         private void miAddInOrder_Click(object sender, RoutedEventArgs e)
         {
+            buttonViewOrder.Visibility = Visibility.Visible;	//Показать кнопку «Оформление заказа»
+            //Выбранный товар в списке всех товаров
+            Classes.ProductExtended productSelect = ListBoxProducts.SelectedItem as Classes.ProductExtended;
+            //Артикул выбранного товара
+            string art = productSelect.product.ProductArticle;
+            //Поиск товара с этим артиклем в заказе
+            Classes.ProductInOrder productFind = listProductInOrder.Find(pr => pr.ProductExtendedInOrder.product.ProductArticle == art);
+            if (productFind != null)			//Нашел - такой товар уже есть в заказе
+            {
+                productFind.countProductInOrder++;	//Увеличиваем его количество в заказе
+            }
+            else                  //такого товара еще не было – создаем новый товар в заказе
+            {
+                Classes.ProductInOrder productNew = new Classes.ProductInOrder();
+                productNew.countProductInOrder = 1;
+                productNew.ProductExtendedInOrder = productSelect;
+                listProductInOrder.Add(productNew);
+            }
+        }
 
+        private void buttonViewOrder_Click(object sender, RoutedEventArgs e)
+        {
+            WindowOrder order = new WindowOrder(listProductInOrder);
+            this.Hide();
+            order.ShowDialog();
+            this.ShowDialog();
         }
     }
 }

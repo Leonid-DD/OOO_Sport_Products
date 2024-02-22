@@ -70,8 +70,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\ProductExtended.cs" />
+    <Compile Include="Classes\ProductInOrder.cs" />
     <Compile Include="View\WindowCatalog.xaml.cs">
       <DependentUpon>WindowCatalog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WindowOrder.xaml.cs">
+      <DependentUpon>WindowOrder.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -87,6 +91,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\WindowCatalog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WindowOrder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

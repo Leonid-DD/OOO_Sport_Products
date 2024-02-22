@@ -34,7 +34,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock x:Name="tbUserName" Grid.Column="0" Text="Пользователь: Гость" Style="{StaticResource Title}"/>
-                <Button x:Name="buttonViewOrder" Grid.Column="1" Content="Просмотреть заказ" Style="{StaticResource Title}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="80,10,80,10" Background="#FFCC6600"/>
+                <Button x:Name="buttonViewOrder" Grid.Column="1" Content="Просмотреть заказ" Style="{StaticResource Title}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="80,10,80,10" Background="#FFCC6600" Visibility="Hidden" Click="buttonViewOrder_Click"/>
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
